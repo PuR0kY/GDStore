@@ -1,0 +1,38 @@
+[gd_scene load_steps=7 format=3 uid="uid://b0mkgcw1qkeld"]
+
+[ext_resource type="Script" uid="uid://sdi60hylb5ji" path="res://addons/gdstore/example/player_state.gd" id="1_0g2sj"]
+[ext_resource type="Script" uid="uid://cv6osf1lvcn1n" path="res://addons/gdstore/example/player_actions.gd" id="2_0n08q"]
+[ext_resource type="Script" uid="uid://dhstrkjkuy0cn" path="res://addons/gdstore/example/example_state.gd" id="2_dmd7c"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_dmd7c"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_0n08q"]
+sky_material = SubResource("ProceduralSkyMaterial_dmd7c")
+
+[sub_resource type="Environment" id="Environment_1p326"]
+background_mode = 2
+sky = SubResource("Sky_0n08q")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="Example" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_1p326")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="state" type="Node3D" parent="."]
+script = ExtResource("2_dmd7c")
+
+[node name="PLAYER" type="Node3D" parent="."]
+
+[node name="ACTIONS" type="Node3D" parent="PLAYER"]
+script = ExtResource("2_0n08q")
+
+[node name="STATE" type="Node3D" parent="PLAYER"]
+script = ExtResource("1_0g2sj")
